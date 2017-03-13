@@ -21,7 +21,6 @@ class CarClassifier:
         self.feature_extractor = feature_extractor
         self.create_training_data(cars, not_cars)
         self.train()
-#        joblib.dump(self.classifier, 'model.pkl') 
 
     def load_training_imgs(self, training_data_path):
         basedir = training_data_path
@@ -32,17 +31,8 @@ class CarClassifier:
         return imgs
 
     def create_training_data(self, cars, not_cars):
-#        n_samples = 10
-#        random_idxs = np.random.randint(0, len(cars), n_samples)
-#        test_cars = np.array(cars)[random_idxs]
-#        test_not_cars = np.array(not_cars)[random_idxs]
-        test_cars = cars
-        test_not_cars = not_cars
-        #get rid of this entirelybefore committing
-
-        car_features = self.feature_extractor.extract_features(test_cars)
-        not_car_features = self.feature_extractor.extract_features(test_not_cars)
-
+        car_features = self.feature_extractor.extract_features(cars)
+        not_car_features = self.feature_extractor.extract_features(not_cars)
 
         X = np.vstack([car_features, not_car_features]).astype(np.float64)
         self.feature_scaler = StandardScaler().fit(X)
@@ -52,7 +42,6 @@ class CarClassifier:
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X_scaled, y, test_size=0.1, random_state=np.random.randint(0, 100))
 
     def train(self):
-#        self.classifier = joblib.load('model.pkl') 
         print('training classifier with', len(self.X_train), 'examples of', len(self.X_train[0]),'features')
         self.classifier = LinearSVC()
         t = time.time()
