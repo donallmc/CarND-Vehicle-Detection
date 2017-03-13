@@ -86,7 +86,7 @@ Here's an example result showing the "hits" for a car, including some false posi
 
 ![alt text][fp_car] ![alt text][fp_heatmap]
 
-Here is a frame taken from the output video with red boxes showing where vehicles were detected:
+Here is a frame taken from the output video with red boxes showing where vehicles were detected (this is from a different run to the previous images, after I improved the accuracy to recognise both cars!):
 ![alt text][detected]
 
 ---
