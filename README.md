@@ -82,7 +82,13 @@ The Y lanes chosen for each window size (64px, 96px, 128px) were chosen by tryin
 
 Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
 
-![alt text][image4]
+Here's an example result showing the "hits" for a car, including some false positives, and the resulting thresholded heatmap, showing only the car of interest.
+
+![alt text][fp_car] ![alt text][fp_heatmap]
+
+Here is a frame taken from the output video with red boxes showing where vehicles were detected:
+![alt text][detected]
+
 ---
 
 ### Video Implementation
@@ -94,13 +100,6 @@ Here's a [link to my video result](./project_video.mp4)
 ####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.
-
-Here's an example result showing the "hits" for a car, including some false positives, and the resulting thresholded heatmap, showing only the car of interest.
-
-![alt text][fp_car] ![alt text][fp_heatmap]
-
-Here is a frame taken from the output video with red boxes showing where vehicles were detected:
-![alt text][detected]
 
 In addition to the heatmap, I implemented [a class](https://github.com/donallmc/CarND-Vehicle-Detection/blob/master/src/vehicle_fleet.py) to track the progress of individual vehicles in the video. This class assumes that vehicles don't vanish in the middle of the road and that they enter/exit the field of vision from a specific area of an image (in the case of the video, cars enter to the right of the camera position). The class I provide is simple and tailored for the video but could be expanded to be more universal.
 
