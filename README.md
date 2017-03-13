@@ -78,6 +78,8 @@ The code for sliding windows is taken from the video that Ryan did. I modified i
 
 The Y lanes chosen for each window size (64px, 96px, 128px) were chosen by trying different boundaries and examining the resulting heat maps. These values were chosen as a balance between minimizing both false positives and processing time. The 3 chosen sizes were obviously based on being multiples of the cell sizes. Windows larger or smaller than these were found not to produce very good results.
 
+As for window overlap, I experimented with tweaking the amount of overlap and ultimately settled on 75% as being the most accurate (although it was a little bit slower).
+
 ####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
 Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
