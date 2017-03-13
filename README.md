@@ -12,18 +12,15 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 [car]: ./images/car.png
 [notcar]: ./images/notcar.png
-[hogcar]: ./images/hogcar.png
+
 [fp_car]: ./images/more_car__more_fp.png
 [fp_heatmap]: ./images/more_threshold.png
 [detected]: ./images/full_0012.jpg
 
-[image2]: ./examples/HOG_example.jpg
-[image3]: ./examples/sliding_windows.jpg
-[image4]: ./examples/sliding_window.jpg
-[image5]: ./examples/bboxes_and_heat.png
-[image6]: ./examples/labels_map.png
-[image7]: ./examples/output_bboxes.png
-[video1]: ./project_video.mp4
+[carhog]: ./images/car_hog.png
+[notcarhog]: ./images/notcar_hog.png
+[carycrcb]: ./images/car_ycrcb.png
+[notcarycrcb]: ./images/notcar_ycrcb.png
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 ###Here I will consider the rubric points individually and describe how I addressed each point in my implementation.
@@ -50,7 +47,8 @@ I then explored different color spaces and different `skimage.hog()` parameters 
 Here is an example using the `YCrCb` color space and HOG parameters of `orientations=9`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
 
 
-![alt text][car] ![alt text][hogcar]
+![alt text][carycrcb] ![alt text][carhog]
+![alt text][notcarycrcb] ![alt text][notcarhog]
 
 ####2. Explain how you settled on your final choice of HOG parameters.
 
