@@ -10,10 +10,12 @@ The goals / steps of this project are the following:
 * Estimate a bounding box for vehicles detected.
 
 [//]: # (Image References)
-[car]: ./examples/car.png
+[car]: ./images/car.png
 [notcar]: ./images/notcar.png
 [hogcar]: ./images/hogcar.png
-
+[fp_car]: ./images/more_car__more_fp.png
+[fp_heatmap]: ./images/more_threshold.png
+[detected]: ./images/full_0012.jpg
 
 [image2]: ./examples/HOG_example.jpg
 [image3]: ./examples/sliding_windows.jpg
@@ -95,17 +97,12 @@ Here's a [link to my video result](./project_video.mp4)
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.
 
-Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
+Here's an example result showing the "hits" for a car, including some false positives, and the resulting thresholded heatmap, showing only the car of interest.
 
-### Here are six frames and their corresponding heatmaps:
+![alt text][fp_car] ![alt text][fp_heatmap]
 
-![alt text][image5]
-
-### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
-![alt text][image6]
-
-### Here the resulting bounding boxes are drawn onto the last frame in the series:
-![alt text][image7]
+Here is a frame taken from the output video with red boxes showing where vehicles were detected:
+![alt text][detected]
 
 In addition to the heatmap, I implemented [a class](https://github.com/donallmc/CarND-Vehicle-Detection/blob/master/src/vehicle_fleet.py) to track the progress of individual vehicles in the video. This class assumes that vehicles don't vanish in the middle of the road and that they enter/exit the field of vision from a specific area of an image (in the case of the video, cars enter to the right of the camera position). The class I provide is simple and tailored for the video but could be expanded to be more universal.
 
