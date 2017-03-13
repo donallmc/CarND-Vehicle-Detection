@@ -13,8 +13,6 @@ class Vehicle:
         self.recovered = 0
 
     def is_same(self, other):
-        print("\t comparing other " + str(other.center) + " to this " + str(self.center))
-        print(math.sqrt((other.center[0] - self.center[0])**2 + (other.center[1] - self.center[1])**2) < 64)
         return math.sqrt((other.center[0] - self.center[0])**2 + (other.center[1] - self.center[1])**2) < 64
 
     def reset_unseen(self):

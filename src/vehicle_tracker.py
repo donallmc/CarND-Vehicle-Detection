@@ -38,7 +38,7 @@ class VehicleTracker:
         self.fleet = VehicleFleet()
         self.heatmap = None
         self.frames = 0
-        self.labels = []
+        self.labels = None
 
     def convert_colour(self, img, conv='RGB2YCrCb'):
         if conv == 'RGB2YCrCb':
@@ -61,7 +61,6 @@ class VehicleTracker:
     def add_vehicles_to_heatmap(self, img, boundaries, scale):
         if self.heatmap == None:
             self.heatmap = np.zeros_like(img[:,:,0])
-            self.labels = None
 
         found = 0
         cropped = self.crop_image(img, boundaries, scale)
@@ -97,8 +96,8 @@ class VehicleTracker:
             self.frames = 0
             self.heatmap = np.zeros_like(img[:,:,0])
             
-        if len(self.labels) == 0:
-            self.labels = label(self.apply_threshold(self.heatmap), 2)
+        if self.labels == None:
+            self.labels = label(self.apply_threshold(self.heatmap, 2))
 
         vehicles = self.fleet.process_new_data(self.get_boxes_from_labels(self.labels))
         for vehicle in vehicles:
